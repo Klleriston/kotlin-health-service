@@ -8,9 +8,8 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
 import com.fiap.healthsystem.model.User
 import com.fiap.healthsystem.viewModel.UserViewModel
-
 @Composable
-fun RegisterScreen(viewModel: UserViewModel, onRegisterSuccess: () -> Unit) {
+fun RegisterScreen(viewModel: UserViewModel, onRegisterSuccess: () -> Unit, onNavigateToLogin: () -> Unit) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var weight by remember { mutableStateOf("") }
@@ -39,6 +38,7 @@ fun RegisterScreen(viewModel: UserViewModel, onRegisterSuccess: () -> Unit) {
                 )
             )
             onRegisterSuccess()
+            onNavigateToLogin()
         }) {
             Text("Register")
         }

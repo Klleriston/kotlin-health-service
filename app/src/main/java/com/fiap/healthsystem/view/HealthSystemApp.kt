@@ -17,10 +17,14 @@ fun HealthSystemApp(userViewModel: UserViewModel) {
             },
             onNavigateToRegister = { currentScreen = "register" }
         )
-        "register" -> RegisterScreen(userViewModel) {
-            userId = userViewModel.user.value?.id // Capture the new user's ID after registration
-            currentScreen = "main"
-        }
+        "register" -> RegisterScreen(
+            viewModel = userViewModel,
+            onRegisterSuccess = {
+                userId = userViewModel.user.value?.id
+                currentScreen = "main"
+            },
+            onNavigateToLogin = { currentScreen = "login" }
+        )
         "main" -> userId?.let { MainScreen(userViewModel, userId = it) }
     }
 }
